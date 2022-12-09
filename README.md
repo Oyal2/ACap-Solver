@@ -9,6 +9,14 @@ Solve your annoying text captchas that amazon gives you in a matter of milliseco
 ---
 This package is meant to solve [Amazon's text captcha](https://www.amazon.com/errors/validateCaptcha)
 
+# Introduction
+
+ACap Solver uses image classification to detect letters. The algorithm is trained using a convolutional neural network model, AlexNet, with a model acurracy of 99.67%.
+
+<img src="https://user-images.githubusercontent.com/13637813/206654693-6727e5f2-6ca0-46a0-a981-f9b0075806cf.png" height="500" width="500"/>
+
+The program uses openCV to find and isolate each letter where it then goes to the CNN model and predicts each letter. After predicting each letter youre returned with a solution. 
+
 # Code Snippets
 
 ## Fetch Answer From Image Url
