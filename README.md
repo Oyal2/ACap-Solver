@@ -8,3 +8,23 @@ Solve your annoying text captchas that amazon gives you in a matter of milliseco
 
 ---
 This package is meant to solve [Amazon's text captcha](https://www.amazon.com/errors/validateCaptcha)
+
+# Code Snippets
+
+## Fetch Answer From Image Url
+```python
+from amazoncaptcha.solve import AmazonCaptchaSolver
+
+solver = AmazonCaptchaSolver()
+answer = solver.solve(Url='https://images-na.ssl-images-amazon.com/captcha/lqbiackd/Captcha_tcvqeczslf.jpg')
+#answer: ULJLFL
+```
+
+## Fetch Answer From Captcha Image
+```python
+from amazoncaptcha.solve import AmazonCaptchaSolver
+
+img_array = cv2.imread("Captcha_doyufigqoe.jpg")
+answer = self.Solver.solve(Image=img_array)
+#answer: YEYJPJ
+```
