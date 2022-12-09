@@ -5,10 +5,10 @@ from PIL import Image
 from tensorflow import expand_dims
 from tensorflow.keras.utils import img_to_array
 from tensorflow.keras.models import load_model
-from contour import *
+from utils import *
 
 
-class TextCaptchaSolve:
+class AmazonCaptchaSolver:
     def __init__(self):
         self.model = load_model("expectedModel.hdf5")
         self.letters = ['A', 'B', 'C', 'E', 'F', 'G', 'H', 'J',
