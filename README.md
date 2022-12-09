@@ -7,4 +7,4 @@
 Solve your annoying text captchas that amazon gives you in a matter of milliseconds. This package can take input as a captcha image or a url to the image link. Get your problem solved in 1-2 lines of code with ACap solver.
 
 ---
-This package is meant to solve [Amazon's text captcha]('https://www.amazon.com/errors/validateCaptcha')
+This package is meant to solve [Amazon's text captcha](https://www.amazon.com/errors/validateCaptcha)
