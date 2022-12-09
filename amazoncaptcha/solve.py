@@ -2,15 +2,17 @@ import numpy as np
 import urllib
 import cv2
 from PIL import Image
+import os
 from tensorflow import expand_dims
 from tensorflow.keras.utils import img_to_array
 from tensorflow.keras.models import load_model
-from utils import *
+from amazoncaptcha.utils import findContours, crop
 
 
-class AmazonCaptchaSolver:
+class AmazonCaptchaSolver():
     def __init__(self):
-        self.model = load_model("expectedModel.hdf5")
+        self.model = load_model(os.path.join(
+            os.path.dirname(__file__), "expectedModel.hdf5"))
         self.letters = ['A', 'B', 'C', 'E', 'F', 'G', 'H', 'J',
                         'K', 'L', 'M', 'N', 'P', 'R', 'T', 'U', 'X', 'Y']
 
@@ -22,7 +24,7 @@ class AmazonCaptchaSolver:
         image = cv2.imdecode(image, cv2.IMREAD_COLOR)
         return image
 
-    def predict(self, img):
+    def predict(self, img: Image):
         image = Image.fromarray(img)
         image = image.resize((227, 227))
         img_array = img_to_array(image)
@@ -30,14 +32,14 @@ class AmazonCaptchaSolver:
         predictions = self.model.predict(img_array)[0]
         return self.letters[np.argmax(predictions)]
 
-    def solve(self, url):
-        image = self.getCaptchaImage(url)
-        basicImage = image.copy()
+    def solve(self, Url=None, Image=None):
+        if Image is None:
+            Image = self.getCaptchaImage(Url)
 
-        contours = findContours(image=image)
+        contours = findContours(image=Image)
         finalAnswer = ""
         for contour in contours:
-            newImage = crop(basicImage, contour)
+            newImage = crop(Image, contour)
             prediction = self.predict(newImage)
             finalAnswer += prediction
         return finalAnswer
